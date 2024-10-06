@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241004070922_InitialCreate")]
+    [Migration("20241006114738_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -242,6 +242,45 @@ namespace CMS.Data.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("CMS.Data.Entities.Systems.UserSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Card")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Color")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Container")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Direction")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Layout")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Sidebar")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Theme")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserSettings");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -394,6 +433,15 @@ namespace CMS.Data.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("CMS.Data.Entities.Systems.UserSetting", b =>
+                {
+                    b.HasOne("CMS.Data.Entities.Systems.User", "User")
+                        .WithOne("UserSetting")
+                        .HasForeignKey("CMS.Data.Entities.Systems.UserSetting", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("CMS.Data.Entities.Systems.Role", null)
@@ -458,6 +506,11 @@ namespace CMS.Data.Migrations
             modelBuilder.Entity("CMS.Data.Entities.Systems.Role", b =>
                 {
                     b.Navigation("Permissions");
+                });
+
+            modelBuilder.Entity("CMS.Data.Entities.Systems.User", b =>
+                {
+                    b.Navigation("UserSetting");
                 });
 #pragma warning restore 612, 618
         }

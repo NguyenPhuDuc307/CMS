@@ -239,6 +239,31 @@ namespace CMS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserSettings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    Theme = table.Column<int>(type: "INTEGER", nullable: false),
+                    Direction = table.Column<int>(type: "INTEGER", nullable: false),
+                    Color = table.Column<int>(type: "INTEGER", nullable: false),
+                    Layout = table.Column<int>(type: "INTEGER", nullable: false),
+                    Container = table.Column<int>(type: "INTEGER", nullable: false),
+                    Sidebar = table.Column<int>(type: "INTEGER", nullable: false),
+                    Card = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSettings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSettings_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserTokens",
                 columns: table => new
                 {
@@ -309,6 +334,12 @@ namespace CMS.Data.Migrations
                 table: "Users",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSettings_UserId",
+                table: "UserSettings",
+                column: "UserId",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -334,6 +365,9 @@ namespace CMS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
+
+            migrationBuilder.DropTable(
+                name: "UserSettings");
 
             migrationBuilder.DropTable(
                 name: "UserTokens");

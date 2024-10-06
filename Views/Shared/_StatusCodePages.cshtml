@@ -1,0 +1,30 @@
+@using System.Net
+@model int
+
+@{
+    ViewData["Title"] = Model;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CMS</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="icon" href="/img/cms.png" type="image/x-icon">
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+        <img src="/img/problem.png" alt="problem image" width="240" height="240">
+        <h1 class="display-1 text-primary fw-bold">@Model</h1>
+        <p class="text-danger"></p>
+        <p class="text-secondary mb-0">Looks like you found a problem...</p>
+        <a href='/'>Back to Home Page</a>
+    </div>
+</body>
+
+</html>

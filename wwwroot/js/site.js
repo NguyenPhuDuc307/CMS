@@ -15,3 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 });
+
+$(document).ready(function () {
+    $("input[Name=AvatarFile]").on("change", function () {
+        if (this.files.length > 0) {
+            $("#update-avatar-form").submit();
+        }
+    });
+});

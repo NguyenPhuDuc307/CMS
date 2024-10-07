@@ -77,6 +77,12 @@ namespace CMS.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", unicode: false, maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    Dob = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    Avatar = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    AccountBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -249,9 +255,9 @@ namespace CMS.Data.Migrations
                     Direction = table.Column<int>(type: "INTEGER", nullable: false),
                     Color = table.Column<int>(type: "INTEGER", nullable: false),
                     Layout = table.Column<int>(type: "INTEGER", nullable: false),
-                    Container = table.Column<int>(type: "INTEGER", nullable: false),
+                    BoxLayout = table.Column<bool>(type: "INTEGER", nullable: false),
                     Sidebar = table.Column<int>(type: "INTEGER", nullable: false),
-                    Card = table.Column<int>(type: "INTEGER", nullable: false)
+                    CardBorder = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

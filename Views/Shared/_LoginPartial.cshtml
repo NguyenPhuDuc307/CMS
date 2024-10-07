@@ -1,4 +1,5 @@
-﻿@using CMS.Data.Entities.Systems
+﻿@using Newtonsoft.Json
+@using CMS.Data.Entities.Systems
 @using CMS.Utils.Constants
 @using CMS.Utils
 @using Microsoft.AspNetCore.Identity
@@ -13,6 +14,25 @@
         width: 420px;
     }
 </style>
+
+@{
+    var userSettingsClaim = User.Claims.FirstOrDefault(c => c.Type == SystemConstants.Claims.UserSettings)?.Value;
+    var userSettings = userSettingsClaim != null
+    ? JsonConvert.DeserializeObject<UserSettingViewModel>(userSettingsClaim)
+    : new UserSettingViewModel();
+
+    <script>
+        var userSettings = {
+            Layout: "@userSettings!.Layout",
+            SidebarType: "@userSettings.Sidebar.ToLower()",
+            BoxedLayout: @userSettings.BoxLayout.ToString().ToLower(),
+            Direction: "@userSettings.Direction.ToLower()",
+            Theme: "@userSettings.Theme.ToLower()",
+            ColorTheme: "@userSettings.Color",
+            cardBorder: @userSettings.CardBorder.ToString().ToLower(),
+        };
+    </script>
+}
 
 @if (SignInManager.IsSignedIn(User))
 {

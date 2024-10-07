@@ -41913,11 +41913,11 @@ ul {
         margin-left: calc(80px + 240px)
     }
 
-    html[data-layout=vertical] body[data-sidebartype=mini-sidebar] .topbar {
+    html[data-layout=vertical] body[data-sidebartype=mini] .topbar {
         width: calc(100% - 80px)
     }
 
-    html[data-layout=vertical] body[data-sidebartype=mini-sidebar] .page-wrapper {
+    html[data-layout=vertical] body[data-sidebartype=mini] .page-wrapper {
         margin-left: 80px
     }
 }
@@ -42219,11 +42219,11 @@ html[data-boxed-layout=boxed] .container-xxl {
 }
 
 @media (min-width:992px) {
-    [data-layout=vertical] [data-sidebartype=mini-sidebar] .side-mini-panel .sidebarmenu .sidebar-nav {
+    [data-layout=vertical] [data-sidebartype=mini] .side-mini-panel .sidebarmenu .sidebar-nav {
         left: -240px
     }
 
-    [data-layout=vertical] [data-sidebartype=mini-sidebar] .side-mini-panel .sidebarmenu.hovermenus .sidebar-nav.left-none {
+    [data-layout=vertical] [data-sidebartype=mini] .side-mini-panel .sidebarmenu.hovermenus .sidebar-nav.left-none {
         left: 80px
     }
 }
@@ -42331,71 +42331,71 @@ html[data-boxed-layout=boxed] .container-xxl {
         margin-left: 260px
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .topbar {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .topbar {
         width: calc(100% - 80px)
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .brand-logo .logo-img {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .brand-logo .logo-img {
         width: 60px;
         overflow: hidden;
         margin: 0 5px
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar {
         width: 80px
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .page-wrapper {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .page-wrapper {
         margin-left: 80px
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .nav-small-cap {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .nav-small-cap {
         text-align: center
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .nav-small-cap .mini-icon {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .nav-small-cap .mini-icon {
         display: inline-block
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .nav-small-cap .hide-menu {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .nav-small-cap .hide-menu {
         display: none
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .sidebar-nav .has-arrow::after {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .sidebar-nav .has-arrow::after {
         display: none
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .sidebar-nav .sidebar-menu .sidebar-item .sidebar-link .hide-menu {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .sidebar-nav .sidebar-menu .sidebar-item .sidebar-link .hide-menu {
         display: none
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover {
         width: 260px
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover .brand-logo .logo-img {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover .brand-logo .logo-img {
         width: auto;
         overflow: unset;
         margin: 0
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover .nav-small-cap {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover .nav-small-cap {
         text-align: left
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover .nav-small-cap .mini-icon {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover .nav-small-cap .mini-icon {
         display: none
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover .nav-small-cap .hide-menu {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover .nav-small-cap .hide-menu {
         display: inline-block
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover .sidebar-nav .has-arrow::after {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover .sidebar-nav .has-arrow::after {
         display: inline-block
     }
 
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar].link-sidebar .left-sidebar:hover .sidebar-nav .sidebar-menu .sidebar-item .sidebar-link .hide-menu {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini].link-sidebar .left-sidebar:hover .sidebar-nav .sidebar-menu .sidebar-item .sidebar-link .hide-menu {
         display: inline-block
     }
 }
@@ -42403,9 +42403,9 @@ html[data-boxed-layout=boxed] .container-xxl {
 @media (max-width:1299.98px) {
 
     html[data-layout=horizontal] .link-sidebar .left-sidebar,
-    html[data-layout=horizontal] .link-sidebar[data-sidebartype=mini-sidebar] .left-sidebar,
+    html[data-layout=horizontal] .link-sidebar[data-sidebartype=mini] .left-sidebar,
     html[data-layout=vertical] .link-sidebar .left-sidebar,
-    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar] .left-sidebar {
+    html[data-layout=vertical] .link-sidebar[data-sidebartype=mini] .left-sidebar {
         left: -260px
     }
 
@@ -49359,33 +49359,33 @@ html[dir=rtl] .toast-onload {
         margin-left: 0
     }
 
-    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini-sidebar] .page-wrapper {
+    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini] .page-wrapper {
         margin-right: 80px;
         margin-left: 0
     }
 
-    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini-sidebar] .side-mini-panel .sidebarmenu .sidebar-nav {
+    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini] .side-mini-panel .sidebarmenu .sidebar-nav {
         right: -240px;
         left: unset
     }
 
-    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini-sidebar] .side-mini-panel .sidebarmenu.hovermenus .sidebar-nav.left-none {
+    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini] .side-mini-panel .sidebarmenu.hovermenus .sidebar-nav.left-none {
         right: 80px;
         left: unset
     }
 
-    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini-sidebar] .side-mini-panel ul.mini-nav .mini-nav-item .sidebarmenu,
-    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini-sidebar] .side-mini-panel ul.mini-nav .mini-nav-item.selected .sidebarmenu {
+    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini] .side-mini-panel ul.mini-nav .mini-nav-item .sidebarmenu,
+    html[dir=rtl][data-layout=vertical] [data-sidebartype=mini] .side-mini-panel ul.mini-nav .mini-nav-item.selected .sidebarmenu {
         left: unset;
         right: -240px
     }
 
-    html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar] .page-wrapper {
+    html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=mini] .page-wrapper {
         margin-right: 80px;
         margin-left: 0
     }
 
-    html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar] .left-sidebar:hover .nav-small-cap {
+    html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=mini] .left-sidebar:hover .nav-small-cap {
         text-align: right
     }
 }
@@ -49403,12 +49403,12 @@ html[dir=rtl] .toast-onload {
         right: unset
     }
 
-    html[dir=rtl] .mini-sidebar .side-mini-panel {
+    html[dir=rtl] .mini .side-mini-panel {
         right: -330px;
         left: unset
     }
 
-    html[dir=rtl] .mini-sidebar.show-sidebar .side-mini-panel {
+    html[dir=rtl] .mini.show-sidebar .side-mini-panel {
         left: unset;
         right: 0
     }
@@ -49427,7 +49427,7 @@ html[dir=rtl] .toast-onload {
 @media (max-width:1299.98px) {
 
     html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=full] .left-sidebar,
-    html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=mini-sidebar] .left-sidebar {
+    html[dir=rtl][data-layout=vertical] .link-sidebar[data-sidebartype=mini] .left-sidebar {
         right: -240px;
         left: unset
     }

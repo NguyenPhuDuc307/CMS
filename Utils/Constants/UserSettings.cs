@@ -2,15 +2,14 @@ namespace CMS.Utils.Constants;
 
 public enum Theme
 {
-    Light,
-    Dark
+    light,
+    dark
 }
 
 public enum Language
 {
-    English,
-    German,
-    Vietnamese
+    en,
+    vi
 }
 
 public enum Direction
@@ -29,30 +28,14 @@ public enum Color
     ORANGE_THEME
 }
 
-public enum Layout{
-    Vertical,
-    Horizontal
-}
-
-public enum Container
+public enum Layout
 {
-    Fluid,
-    Boxed
+    vertical,
+    horizontal
 }
 
 public enum Sidebar
 {
-    Default,
-    Fixed
-}
-
-public enum Header
-{
-    Default,
-    Fixed
-}
-
-public enum Card{
-    Border,
-    Shadow
+    mini,
+    full
 }

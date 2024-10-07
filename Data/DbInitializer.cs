@@ -41,6 +41,9 @@ public class DbInitializer
                 var result = await _userManager.CreateAsync(userModel.User, userModel.Password);
                 if (result.Succeeded)
                 {
+                    userModel.UserSetting.UserId = userModel.User.Id;
+                    _context.UserSettings.Add(userModel.UserSetting);
+                    await _context.SaveChangesAsync();
                     var user = await _userManager.FindByNameAsync(userModel.User.UserName!);
                     if (user != null)
                     {
@@ -99,9 +102,9 @@ public class DbInitializer
         };
     }
 
-    private List<(User User, string Password, string[] Roles)> GetPredefinedUsers()
+    private List<(User User, string Password, string[] Roles, UserSetting UserSetting)> GetPredefinedUsers()
     {
-        return new List<(User, string, string[])>
+        return new List<(User, string, string[], UserSetting)>
         {
             (
                 new User
@@ -109,12 +112,19 @@ public class DbInitializer
                     Id = Guid.NewGuid().ToString(),
                     UserName = "nguyenphuduc62001@gmail.com",
                     Email = "nguyenphuduc62001@gmail.com",
+                    FirstName = "Duc",
+                    LastName = "Nguyen Phu",
+                    Dob = new DateOnly(2000, 1, 1),
+                    Introduction = "",
+                    AccountBalance = 0,
+                    Avatar = "",
                     LockoutEnabled = false,
                     EmailConfirmed = true,
                     PhoneNumber = "0964732231"
                 },
                 "Admin@123",
-                new[] { AdminRoleName, ManagerRoleName }
+                new[] { AdminRoleName, ManagerRoleName },
+                new UserSetting()
             ),
             (
                 new User
@@ -122,12 +132,19 @@ public class DbInitializer
                     Id = Guid.NewGuid().ToString(),
                     UserName = "nguyenphuduc62001@icloud.com",
                     Email = "nguyenphuduc62001@icloud.com",
+                    FirstName = "Duc",
+                    LastName = "Nguyen Phu",
+                    Dob = new DateOnly(2000, 1, 1),
+                    Introduction = "",
+                    AccountBalance = 0,
+                    Avatar = "",
                     EmailConfirmed = true,
                     LockoutEnabled = false,
                     PhoneNumber = "0964732231"
                 },
                 "Admin@123",
-                new[] { UserRoleName, ManagerRoleName }
+                new[] { UserRoleName, ManagerRoleName },
+                new UserSetting()
             )
         };
     }

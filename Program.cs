@@ -12,15 +12,34 @@ using Serilog;
 using static CMS.Utils.Constants.SystemConstants;
 using CMS.Authorization;
 using Microsoft.AspNetCore.Identity;
+using CMS.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+
+int optionDatabases = 1;
+
+switch (optionDatabases)
+{
+    case 1:
+        {
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(connectionString));
+        }
+        break;
+    case 2:
+        {
+            var connectionString = builder.Configuration.GetConnectionString("SQLServerConnection") ?? throw new InvalidOperationException("Connection string 'SQLServerConnection' not found.");
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+        }
+        break;
+}
+
 services.AddDatabaseDeveloperPageExceptionFilter();
 
 services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -160,6 +179,7 @@ void AddScoped()
     services.AddScoped<IRoleRepository, RoleRepository>();
     services.AddScoped<IPermissionRepository, PermissionRepository>();
     services.AddScoped<IFunctionRepository, FunctionRepository>();
+    services.AddScoped<IUserSettingRepository, UserSettingRepository>();
 
     services.AddTransient<IEmailSender, EmailSenderService>();
     services.AddTransient<IVNPayService, VNPayService>();
@@ -170,6 +190,7 @@ void AddScoped()
     services.AddTransient<IViewRenderService, ViewRenderService>();
     services.AddTransient<ICacheService, DistributedCacheService>();
     services.AddTransient<ICloudStorageService, CloudStorageService>();
+    services.AddTransient<IFileValidator, FileValidator>();
 }
 
 void RouteRazerPage()

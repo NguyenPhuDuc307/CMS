@@ -6,6 +6,16 @@ namespace CMS.Data.Entities.Systems
 {
     public class UserSetting
     {
+        public UserSetting()
+        {
+            Theme = Theme.dark;
+            Direction = Direction.LTR;
+            Color = Color.BLUE_THEME;
+            Layout = Layout.vertical;
+            BoxLayout = true;
+            Sidebar = Sidebar.full;
+            CardBorder = false;
+        }
         public int Id { get; set; }
         [MaxLength(50)]
         [Column(TypeName = "varchar(50)")]
@@ -16,8 +26,8 @@ namespace CMS.Data.Entities.Systems
         public Direction Direction { get; set; }
         public Color Color { get; set; }
         public Layout Layout { get; set; }
-        public Container Container { get; set; }
+        public bool BoxLayout { get; set; }
         public Sidebar Sidebar { get; set; }
-        public Card Card { get; set; }
+        public bool CardBorder { get; set; }
     }
 }

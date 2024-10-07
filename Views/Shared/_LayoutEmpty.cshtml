@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CMS</title>
+    <link rel="stylesheet" href="~/assets/css/styles.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
+            <div class="position-relative z-index-5">
+                <div class="row">
+                    <div
+                        class="col-lg-6 col-xl-7 col-xxl-6 position-relative overflow-hidden bg-dark d-none d-lg-block">
+                        <div class="circle-top"></div>
+                        <div class="d-lg-flex align-items-center z-index-5 position-relative h-n80">
+                            <div class="row justify-content-center w-100">
+                                <div class="col-lg-7">
+                                    <h2 class="text-white fs-10 mb-3">
+                                        Welcome to
+                                        <br />
+                                        CMS
+                                    </h2>
+                                    <span class="opacity-75 fs-4 text-white d-block mb-3">Communication Management
+                                        System.
+                                    </span>
+                                    <a href="/" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-5 col-xxl-6">
+                        <div
+                            class="min-vh-100 bg-body row justify-content-center justify-content-lg-start align-items-center p-5">
+                            <div class="col-sm-8 col-md-9 col-xxl-6 auth-card">
+                                <a href="/" class="text-nowrap logo-img d-block w-100">
+                                    <img src="/img/logo.png" width="72" class="dark-logo" alt="Logo-CMS" />
+                                </a>
+                                <h2 class="mb-2 mt-4 fs-7 fw-bolder">@ViewData["Title"]</h2>
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @(await Component.InvokeAsync("Footer"))
+    <!-- solar icons -->
+    <script src="~/assets/js/vendor.min.js"></script>
+    <!-- Import Js Files -->
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript'
+        src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <script src="~/assets/js/forms/froala-init.js"></script>
+    <!-- solar icons -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <script src="~/assets/js/extra-libs/moment/moment.min.js"></script>
+    <script src="~/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/assets/js/forms/datepicker-init.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

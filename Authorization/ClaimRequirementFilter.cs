@@ -1,7 +1,6 @@
 using CMS.Utils.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace CMS.Authorization

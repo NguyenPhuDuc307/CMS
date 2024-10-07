@@ -8,6 +8,7 @@ public static class SystemConstants
         public const string FirstName = "FirstName";
         public const string Avatar = "Avatar";
         public const string Roles = "Roles";
+        public const string UserSettings = "UserSettings";
     }
 
     public static class Roles

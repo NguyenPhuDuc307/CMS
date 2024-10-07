@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241006114738_InitialCreate")]
+    [Migration("20241006162617_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -186,8 +186,20 @@ namespace CMS.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("AccountBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Avatar")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Dob")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -196,6 +208,12 @@ namespace CMS.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -248,13 +266,13 @@ namespace CMS.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Card")
+                    b.Property<bool>("BoxLayout")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CardBorder")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Color")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Container")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Direction")

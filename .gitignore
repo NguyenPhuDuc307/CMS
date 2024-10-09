@@ -1,8 +1,8 @@
 /.vscode
 /app.db
+/app.db-shm
+/app.db-wal
 /bin
 /obj
 /template
-/app.db-shm
-/app.db-wal
 .DS_Store

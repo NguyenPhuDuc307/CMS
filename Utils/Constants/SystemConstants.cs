@@ -5,7 +5,7 @@ public static class SystemConstants
     public class Claims
     {
         public const string Permissions = "Permissions";
-        public const string FirstName = "FirstName";
+        public const string GivenName = "GivenName";
         public const string Avatar = "Avatar";
         public const string Roles = "Roles";
         public const string UserSettings = "UserSettings";

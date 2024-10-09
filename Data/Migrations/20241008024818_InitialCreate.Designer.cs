@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241006162617_InitialCreate")]
+    [Migration("20241008024818_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -189,14 +189,20 @@ namespace CMS.Data.Migrations
                     b.Property<decimal>("AccountBalance")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Avatar")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Background")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Company")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("Dob")
@@ -210,6 +216,12 @@ namespace CMS.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Introduction")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Job")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
@@ -229,6 +241,15 @@ namespace CMS.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("NumberOfFollowers")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("NumberOfFollowing")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("NumberOfPosts")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
 
@@ -246,6 +267,9 @@ namespace CMS.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("WebsiteUrl")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

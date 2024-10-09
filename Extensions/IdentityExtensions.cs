@@ -2,7 +2,7 @@ using System.Security.Claims;
 
 namespace CMS.Extensions
 {
-    public static class IdentityExtensions
+    public static class Identity_Extensions
     {
         public static string GetUserId(this ClaimsPrincipal claimsPrincipal)
         {

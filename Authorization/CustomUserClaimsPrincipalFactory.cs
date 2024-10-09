@@ -41,7 +41,8 @@ public class CustomUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<User,
         }
         // Thêm claim Permissions vào ClaimsIdentity
         identity.AddClaim(new Claim(SystemConstants.Claims.Permissions, JsonConvert.SerializeObject(permissions)));
-        identity.AddClaim(new Claim(SystemConstants.Claims.FirstName, user.UserName!));
+        identity.AddClaim(new Claim(SystemConstants.Claims.GivenName, user.FirstName ?? ""));
+        identity.AddClaim(new Claim(SystemConstants.Claims.Avatar, user.Avatar ?? ""));
         identity.AddClaim(new Claim(SystemConstants.Claims.Roles, JsonConvert.SerializeObject(roles)));
 
         return identity;

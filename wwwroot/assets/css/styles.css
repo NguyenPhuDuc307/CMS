@@ -41977,7 +41977,7 @@ html[data-boxed-layout=boxed] .container-xxl {
 }
 
 .side-mini-panel .mini-nav .dropup .dropdown-menu.content-dd {
-    width: 360px
+    width: 420px;
 }
 
 .side-mini-panel .mini-nav ul.mini-nav-ul {
@@ -42512,7 +42512,7 @@ html[data-boxed-layout=boxed] .container-xxl {
 
 @media (min-width:768px) {
     .dropdown-menu.content-dd {
-        width: 360px
+        width: 420px;
     }
 }
 

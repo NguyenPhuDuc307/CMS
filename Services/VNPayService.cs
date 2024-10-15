@@ -1,4 +1,4 @@
-using CMS.Models.VNPay;
+using CMS.ViewModels.VNPay;
 using Microsoft.Extensions.Options;
 using CMS.Utils;
 using CMS.Utils.ConfigOptions.VNPay;

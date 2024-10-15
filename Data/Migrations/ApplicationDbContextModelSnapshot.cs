@@ -17,6 +17,52 @@ namespace CMS.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
+            modelBuilder.Entity("CMS.Data.Entities.Catalog.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FromUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ToRoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("ToRoomId");
+
+                    b.ToTable("Message");
+                });
+
+            modelBuilder.Entity("CMS.Data.Entities.Catalog.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AdminId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("Room");
+                });
+
             modelBuilder.Entity("CMS.Data.Entities.Systems.ActivityLog", b =>
                 {
                     b.Property<int>("Id")
@@ -71,23 +117,6 @@ namespace CMS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Commands");
-                });
-
-            modelBuilder.Entity("CMS.Data.Entities.Systems.CommandInFunction", b =>
-                {
-                    b.Property<string>("CommandId")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("FunctionId")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("CommandId", "FunctionId");
-
-                    b.HasIndex("FunctionId");
-
-                    b.ToTable("CommandInFunctions");
                 });
 
             modelBuilder.Entity("CMS.Data.Entities.Systems.Function", b =>
@@ -218,7 +247,7 @@ namespace CMS.Data.Migrations
                     b.Property<string>("Introduction")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Job")
+                    b.Property<string>("JobTitle")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
@@ -287,13 +316,13 @@ namespace CMS.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("BoxLayout")
+                    b.Property<bool>("BoxedLayout")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("CardBorder")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Color")
+                    b.Property<int>("ColorTheme")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Direction")
@@ -302,7 +331,7 @@ namespace CMS.Data.Migrations
                     b.Property<int>("Layout")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Sidebar")
+                    b.Property<int>("SidebarType")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Theme")
@@ -426,23 +455,30 @@ namespace CMS.Data.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CMS.Data.Entities.Systems.CommandInFunction", b =>
+            modelBuilder.Entity("CMS.Data.Entities.Catalog.Message", b =>
                 {
-                    b.HasOne("CMS.Data.Entities.Systems.Command", "Command")
-                        .WithMany()
-                        .HasForeignKey("CommandId")
+                    b.HasOne("CMS.Data.Entities.Systems.User", "FromUser")
+                        .WithMany("Messages")
+                        .HasForeignKey("FromUserId");
+
+                    b.HasOne("CMS.Data.Entities.Catalog.Room", "ToRoom")
+                        .WithMany("Messages")
+                        .HasForeignKey("ToRoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CMS.Data.Entities.Systems.Function", "Function")
-                        .WithMany()
-                        .HasForeignKey("FunctionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("FromUser");
 
-                    b.Navigation("Command");
+                    b.Navigation("ToRoom");
+                });
 
-                    b.Navigation("Function");
+            modelBuilder.Entity("CMS.Data.Entities.Catalog.Room", b =>
+                {
+                    b.HasOne("CMS.Data.Entities.Systems.User", "Admin")
+                        .WithMany("Rooms")
+                        .HasForeignKey("AdminId");
+
+                    b.Navigation("Admin");
                 });
 
             modelBuilder.Entity("CMS.Data.Entities.Systems.Permission", b =>
@@ -532,6 +568,11 @@ namespace CMS.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CMS.Data.Entities.Catalog.Room", b =>
+                {
+                    b.Navigation("Messages");
+                });
+
             modelBuilder.Entity("CMS.Data.Entities.Systems.Command", b =>
                 {
                     b.Navigation("Permissions");
@@ -549,6 +590,10 @@ namespace CMS.Data.Migrations
 
             modelBuilder.Entity("CMS.Data.Entities.Systems.User", b =>
                 {
+                    b.Navigation("Messages");
+
+                    b.Navigation("Rooms");
+
                     b.Navigation("UserSetting");
                 });
 #pragma warning restore 612, 618

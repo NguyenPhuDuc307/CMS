@@ -1,5 +1,5 @@
 using CMS.Data.Entities.Systems;
-using CMS.Models;
+using CMS.ViewModels;
 
 namespace CMS.Repositories
 {

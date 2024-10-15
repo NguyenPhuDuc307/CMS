@@ -1,4 +1,5 @@
-﻿using CMS.Data.Entities;
+﻿using System.Reflection;
+using CMS.Data.Entities;
 using CMS.Data.Entities.Systems;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -49,12 +50,8 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string>
 
         builder.Entity<Permission>()
                 .HasKey(c => new { c.RoleId, c.FunctionId, c.CommandId });
-        builder.Entity<CommandInFunction>()
-                .HasKey(c => new { c.CommandId, c.FunctionId });
     }
-
     public DbSet<Command> Commands { set; get; } = default!;
-    public DbSet<CommandInFunction> CommandInFunctions { set; get; } = default!;
     public DbSet<ActivityLog> ActivityLogs { set; get; } = default!;
     public DbSet<Function> Functions { set; get; } = default!;
     public DbSet<Permission> Permissions { set; get; } = default!;

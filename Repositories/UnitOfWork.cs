@@ -12,7 +12,7 @@ namespace CMS.Repositories
         public IRepository<Role> _roleRepository { get; }
         public IRepository<Permission> _permissionRepository { get; }
         public IRepository<Function> _functionRepository { get; }
-        public IRepository<CommandInFunction> _commandInFunctionRepository { get; }
+        public IRepository<Command> _commandRepository { get; }
         public IRepository<UserSetting> _userSettingRepository { get; }
 
         private bool _disposed = false; // To track whether the object has been disposed
@@ -28,7 +28,7 @@ namespace CMS.Repositories
             _roleRepository = new Repository<Role>(_dbContext);
             _permissionRepository = new Repository<Permission>(_dbContext);
             _functionRepository = new Repository<Function>(_dbContext);
-            _commandInFunctionRepository = new Repository<CommandInFunction>(_dbContext);
+            _commandRepository = new Repository<Command>(_dbContext);
             _userSettingRepository = new Repository<UserSetting>(_dbContext);
         }
 

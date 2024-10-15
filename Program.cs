@@ -13,6 +13,7 @@ using static CMS.Utils.Constants.SystemConstants;
 using CMS.Authorization;
 using Microsoft.AspNetCore.Identity;
 using CMS.Helpers;
+using CMS.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -92,6 +93,8 @@ services.AddAuthentication()
 
 AddScoped();
 
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -129,8 +132,11 @@ app.UseStatusCodePages(appError =>
 
 
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+CustomMiddleware();
 
 app.MapControllerRoute(
     name: "default",
@@ -228,4 +234,9 @@ void RouteRazerPage()
         options.Conventions.AddAreaPageRoute("Identity", "/Account/Manage/ShowRecoveryCodes", "manager/show-recovery-codes");
         options.Conventions.AddAreaPageRoute("Identity", "/Account/Manage/TwoFactorAuthentication", "2famanager/");
     });
+}
+
+void CustomMiddleware()
+{
+    app.UseMiddleware<UserSettingsMiddleware>();
 }

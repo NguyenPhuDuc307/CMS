@@ -71,14 +71,6 @@ public class DbInitializer
         }
         #endregion
 
-        #region Command In Functions
-        if (!_context.CommandInFunctions.Any())
-        {
-            var commandInFunctions = GetCommandInFunctions(predefinedFunctions);
-            _context.CommandInFunctions.AddRange(commandInFunctions);
-        }
-        #endregion
-
         #region Permissions
         if (!_context.Permissions.Any())
         {
@@ -121,7 +113,7 @@ public class DbInitializer
                     NumberOfPosts = 938,
                     NumberOfFollowers = 3586,
                     NumberOfFollowing = 2659,
-                    Job = "Software Engineer",
+                    JobTitle = "Software Engineer",
                     Company = "Sir, P P Institute Of Science",
                     Address = "Newyork, USA - 100001",
                     WebsiteUrl = "www.xyz.com",
@@ -148,7 +140,7 @@ public class DbInitializer
                     NumberOfPosts = 938,
                     NumberOfFollowers = 3586,
                     NumberOfFollowing = 2659,
-                    Job = "Software Engineer",
+                    JobTitle = "Software Engineer",
                     Company = "Sir, P P Institute Of Science",
                     Address = "Newyork, USA - 100001",
                     WebsiteUrl = "www.xyz.com",
@@ -187,23 +179,6 @@ public class DbInitializer
             new Command { Id = "APPROVE", Name = "Approve" },
             new Command { Id = "REJECT", Name = "Reject" }
         };
-    }
-
-    private List<CommandInFunction> GetCommandInFunctions(IEnumerable<Function> functions)
-    {
-        var commandIds = new[] { "VIEW", "CREATE", "UPDATE", "DELETE", "APPROVE", "REJECT" };
-        var commandInFunctions = new List<CommandInFunction>();
-
-        foreach (var function in functions)
-        {
-            commandInFunctions.AddRange(commandIds.Select(commandId => new CommandInFunction
-            {
-                CommandId = commandId,
-                FunctionId = function.Id
-            }));
-        }
-
-        return commandInFunctions;
     }
 
     private List<Permission> GetPredefinedPermissions(IEnumerable<Function> functions, Role adminRole, Role managerRole)

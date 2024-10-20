@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using CMS.Models;
+using CMS.ViewModels;
 
 namespace CMS.Controllers;
 

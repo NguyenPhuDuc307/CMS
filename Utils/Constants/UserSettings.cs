@@ -14,18 +14,18 @@ public enum Language
 
 public enum Direction
 {
-    LTR,
-    RTL
+    ltr,
+    rtl
 }
 
-public enum Color
+public enum ColorTheme
 {
-    BLUE_THEME,
-    AQUA_THEME,
-    PURPLE_THEME,
-    GREEN_THEME,
-    CYAN_THEME,
-    ORANGE_THEME
+    Blue_Theme,
+    Aqua_Theme,
+    Purple_Theme,
+    Green_Theme,
+    Cyan_Theme,
+    Orange_Theme
 }
 
 public enum Layout
@@ -34,7 +34,7 @@ public enum Layout
     horizontal
 }
 
-public enum Sidebar
+public enum SidebarType
 {
     mini,
     full

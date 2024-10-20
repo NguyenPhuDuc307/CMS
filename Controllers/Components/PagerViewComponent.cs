@@ -1,4 +1,4 @@
-using CMS.Models;
+using CMS.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMS.Controllers.Components;

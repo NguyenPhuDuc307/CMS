@@ -4,12 +4,40 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CMS</title>
+    <title>@ViewData["Title"] | CMS</title>
     <link rel="stylesheet" href="~/assets/css/styles.css" />
     <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet'
         type='text/css' />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/assets/libs/jvectormap/jquery-jvectormap.css" />
+    @{
+        // Khởi tạo một đối tượng UserSettingViewModel mặc định
+        var defaultUserSettings = new UserSettingViewModel();
+    }
+
+    <script>
+        // Hàm để lấy giá trị cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Lấy cookie "UserSettings"
+        let userSettingsCookie = getCookie("UserSettings");
+
+        // Giải mã cookie và parse thành object JavaScript
+        var userSettings = userSettingsCookie ? JSON.parse(decodeURIComponent(userSettingsCookie)) : {
+            Layout: "@defaultUserSettings.Layout",
+            SidebarType: "@defaultUserSettings.SidebarType",
+            BoxedLayout: @defaultUserSettings.BoxedLayout.ToString(),
+            Direction: "@defaultUserSettings.Direction",
+            Theme: "@defaultUserSettings.Theme",
+            ColorTheme: "@defaultUserSettings.ColorTheme",
+            CardBorder: @defaultUserSettings.CardBorder.ToString(),
+        };
+    </script>
+
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
 </head>
 
@@ -33,9 +61,10 @@
     <script src="~/assets/js/vendor.min.js"></script>
     <!-- Import Js Files -->
     <script src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/theme/app.min.js"></script>
     <script src="~/assets/libs/simplebar/dist/simplebar.min.js"></script>
     <script src="~/assets/js/theme/theme.js"></script>
-    <script src="~/assets/js/theme/app.min.js"></script>
+    <script src="~/assets/js/apps/chat.js"></script>
     <script src="~/assets/js/theme/sidebarmenu.js"></script>
     <script type='text/javascript'
         src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>

@@ -1,12 +1,13 @@
 using CMS.Data.Entities.Systems;
-using CMS.Models;
+using CMS.ViewModels;
+using CMS.ViewModels.Systems;
 
 namespace CMS.Repositories
 {
     public interface IPermissionRepository
     {
         Task<IEnumerable<Permission>> GetAllPermissionsAsync();
-        Task<IEnumerable<CommandInFunction>> GetAllCommandInFunctionsAsync();
+        Task<IEnumerable<CommandInFunctionViewModel>> GetAllCommandInFunctionsAsync();
         Task<Pagination<Permission>> GetPermissionsPagedAsync(int pageNumber, int pageSize);
         Task<IEnumerable<Permission>> GetPermissionsByRoleIdAsync(string roleId);
         Task<Permission?> GetPermissionByIdAsync(string id);
@@ -31,11 +32,25 @@ namespace CMS.Repositories
             return await _unitOfWork._permissionRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<CommandInFunction>> GetAllCommandInFunctionsAsync()
+        public async Task<IEnumerable<CommandInFunctionViewModel>> GetAllCommandInFunctionsAsync()
         {
-            return await _unitOfWork._commandInFunctionRepository.GetAllAsync(x => x.Function!, x => x.Command!);
-        }
+            var functions = await _unitOfWork._functionRepository.GetAllAsync();
+            var commands = await _unitOfWork._commandRepository.GetAllAsync();
 
+            var commandsInFunctions = new List<CommandInFunctionViewModel>();
+            foreach (var function in functions)
+            {
+                foreach (var command in commands)
+                {
+                    commandsInFunctions.Add(new CommandInFunctionViewModel
+                    {
+                        Command = command,
+                        Function = function
+                    });
+                }
+            }
+            return commandsInFunctions;
+        }
         public async Task<Pagination<Permission>> GetPermissionsPagedAsync(int pageNumber, int pageSize)
         {
             // Calculate the number of items to skip based on the page number and page size

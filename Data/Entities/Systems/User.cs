@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using CMS.Data.Entities.Catalog;
 using Microsoft.AspNetCore.Identity;
 
 namespace CMS.Data.Entities.Systems;
@@ -17,8 +18,10 @@ public class User : IdentityUser
     public int NumberOfFollowers { get; set; }
     public int NumberOfFollowing { get; set; }
     public string? WebsiteUrl { get; set; }
-    public string? Job { get; set; }
+    public string? JobTitle { get; set; }
     public string? Company { get; set; }
     public string? Address { get; set; }
     public UserSetting? UserSetting { get; set; }
+    public ICollection<Room>? Rooms { get; set; }
+    public ICollection<Message>? Messages { get; set; }
 }

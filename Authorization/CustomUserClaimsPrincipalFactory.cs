@@ -5,7 +5,7 @@ using CMS.Utils.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using CMS.Models.Systems;
+using CMS.ViewModels.Systems;
 
 namespace CMS.Authorization;
 public class CustomUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<User, Role>
@@ -33,12 +33,7 @@ public class CustomUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<User,
         var roles = await _userManager.GetRolesAsync(user);
 
         var permissions = await _permissionRepository.GetPermissionsByRolesAsync(roles.ToList());
-        var userSettings = await _userSettingRepository.GetUserSettingByUserIdAsync(user.Id);
-        if (userSettings != null)
-        {
-            var userSettingViewModel = new UserSettingViewModel(userSettings.Theme, userSettings.Direction, userSettings.Color, userSettings.Layout, userSettings.BoxLayout, userSettings.Sidebar, userSettings.CardBorder);
-            identity.AddClaim(new Claim(SystemConstants.Claims.UserSettings, JsonConvert.SerializeObject(userSettingViewModel)));
-        }
+
         // Thêm claim Permissions vào ClaimsIdentity
         identity.AddClaim(new Claim(SystemConstants.Claims.Permissions, JsonConvert.SerializeObject(permissions)));
         identity.AddClaim(new Claim(SystemConstants.Claims.GivenName, user.FirstName ?? ""));

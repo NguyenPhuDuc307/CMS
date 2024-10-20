@@ -24,7 +24,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="/main/app-chat.html"
+                                                        <a asp-controller="Message" asp-action="Index"
                                                             class="d-flex align-items-center pb-9 position-relative">
                                                             <div
                                                                 class="text-bg-light rounded-circle round-40 me-3 p-6 d-flex align-items-center justify-content-center">
@@ -33,7 +33,7 @@
                                                                     height="24" />
                                                             </div>
                                                             <div class="d-inline-block">
-                                                                <h6 class="mb-1">Chat Application</h6>
+                                                                <h6 class="mb-1">Message Application</h6>
                                                                 <span class="fs-2 d-block text-muted">New
                                                                     messages arrived</span>
                                                             </div>
@@ -237,7 +237,7 @@
                                                                     height="24" />
                                                             </div>
                                                             <div class="d-inline-block">
-                                                                <h6 class="mb-1">Chat Application</h6>
+                                                                <h6 class="mb-1">Message Application</h6>
                                                                 <span class="fs-2 d-block text-muted">New
                                                                     messages arrived</span>
                                                             </div>
@@ -606,3 +606,54 @@
     </div>
 </header>
 <!--  Header End -->
+
+<aside class="left-sidebar with-horizontal">
+    <!-- Sidebar scroll-->
+    <div>
+        <!-- Sidebar navigation-->
+        <nav id="sidebarnavh" class="sidebar-nav scroll-sidebar container-fluid">
+            <ul id="sidebarnav">
+                <!-- ============================= -->
+                <!-- Home -->
+                <!-- ============================= -->
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Home</span>
+                </li>
+                <!-- =================== -->
+                <!-- Dashboard -->
+                <!-- =================== -->
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:layers-line-duotone" class="ti"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="../main/index.html" class="sidebar-link">
+                                <i class="ti ti-aperture"></i>
+                                <span class="hide-menu">Analytics</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="../main/index2.html" class="sidebar-link">
+                                <i class="ti ti-shopping-cart"></i>
+                                <span class="hide-menu">eCommerce</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="../main/index3.html" class="sidebar-link">
+                                <i class="ti ti-currency-dollar"></i>
+                                <span class="hide-menu">CRM</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

@@ -1,12 +1,4 @@
-﻿@using Newtonsoft.Json
-@using CMS.Data.Entities.Systems
-@using CMS.Utils.Constants
-@using CMS.Utils
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
-
-<!-- ------------------------------- -->
+﻿<!-- ------------------------------- -->
 <!-- start profile Dropdown -->
 <!-- ------------------------------- -->
 <style>
@@ -15,24 +7,6 @@
     }
 </style>
 
-@{
-    var userSettingsClaim = User.Claims.FirstOrDefault(c => c.Type == SystemConstants.Claims.UserSettings)?.Value;
-    var userSettings = userSettingsClaim != null
-    ? JsonConvert.DeserializeObject<UserSettingViewModel>(userSettingsClaim)
-    : new UserSettingViewModel();
-
-    <script>
-        var userSettings = {
-            Layout: "@userSettings!.Layout",
-            SidebarType: "@userSettings.Sidebar.ToLower()",
-            BoxedLayout: @userSettings.BoxLayout.ToString().ToLower(),
-            Direction: "@userSettings.Direction.ToLower()",
-            Theme: "@userSettings.Theme.ToLower()",
-            ColorTheme: "@userSettings.Color",
-            cardBorder: @userSettings.CardBorder.ToString().ToLower(),
-        };
-    </script>
-}
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -79,7 +53,7 @@
                     </div>
                 </div>
                 <div class="message-body">
-                    <a asp-controller="Profiles" class="py-8 px-7 mt-8 d-flex align-items-center">
+                    <a asp-controller="Profile" class="py-8 px-7 mt-8 d-flex align-items-center">
                         <span
                             class="d-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded round">
                             <iconify-icon icon="solar:wallet-2-line-duotone" class="fs-7"></iconify-icon>

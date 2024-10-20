@@ -8,12 +8,12 @@ namespace CMS.Data.Entities.Systems
     {
         public UserSetting()
         {
-            Theme = Theme.dark;
-            Direction = Direction.LTR;
-            Color = Color.BLUE_THEME;
+            Theme = Theme.light;
+            Direction = Direction.ltr;
+            ColorTheme = ColorTheme.Purple_Theme;
             Layout = Layout.vertical;
-            BoxLayout = true;
-            Sidebar = Sidebar.full;
+            BoxedLayout = true;
+            SidebarType = SidebarType.mini;
             CardBorder = false;
         }
         public int Id { get; set; }
@@ -24,10 +24,10 @@ namespace CMS.Data.Entities.Systems
 
         public Theme Theme { get; set; }
         public Direction Direction { get; set; }
-        public Color Color { get; set; }
+        public ColorTheme ColorTheme { get; set; }
         public Layout Layout { get; set; }
-        public bool BoxLayout { get; set; }
-        public Sidebar Sidebar { get; set; }
+        public bool BoxedLayout { get; set; }
+        public SidebarType SidebarType { get; set; }
         public bool CardBorder { get; set; }
     }
 }

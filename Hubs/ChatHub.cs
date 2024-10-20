@@ -1,39 +1,34 @@
 ﻿using AutoMapper;
-using CMS.Data;
 using CMS.Data.Entities.Systems;
+using CMS.Repositories;
 using CMS.ViewModels.Catalog;
 using CMS.ViewModels.Systems;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CMS.Hubs
 {
     [Authorize]
     public class ChatHub : Hub
     {
-        public readonly static List<UserViewModel> _Connections = new List<UserViewModel>();
-        private readonly static Dictionary<string, string> _ConnectionsMap = new Dictionary<string, string>();
-
-        private readonly ApplicationDbContext _context;
+        public readonly static List<UserViewModel> _connections = new List<UserViewModel>();
+        private readonly IUserRepository _userRepository;
+        private readonly static Dictionary<string, string> _connectionsMap = new Dictionary<string, string>();
         private readonly IMapper _mapper;
 
-        public ChatHub(ApplicationDbContext context, IMapper mapper)
+        public ChatHub(IMapper mapper, IUserRepository userRepository)
         {
-            _context = context;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task SendPrivate(string receiverName, string message)
         {
-            if (_ConnectionsMap.TryGetValue(receiverName, out string? userId))
+            if (_connectionsMap.TryGetValue(receiverName, out string? userId))
             {
                 // Who is the sender;
-                var sender = _Connections.Where(u => u.UserName == IdentityName).First();
+                var sender = _connections.Where(u => u.UserName == IdentityName).First();
 
                 if (!string.IsNullOrEmpty(message.Trim()))
                 {
@@ -59,7 +54,7 @@ namespace CMS.Hubs
         {
             try
             {
-                var user = _Connections.Where(u => u.UserName == IdentityName).FirstOrDefault();
+                var user = _connections.Where(u => u.UserName == IdentityName).FirstOrDefault();
                 if (user != null && user.CurrentRoom != roomName)
                 {
                     // Remove user from others list
@@ -88,45 +83,52 @@ namespace CMS.Hubs
 
         public IEnumerable<UserViewModel> GetUsers(string roomName)
         {
-            return _Connections.Where(u => u.CurrentRoom == roomName).ToList();
+            return _connections.Where(u => u.CurrentRoom == roomName).ToList();
         }
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             try
             {
-                var user = _context.Users.Where(u => u.UserName == IdentityName).FirstOrDefault();
-                var userViewModel = _mapper.Map<User, UserViewModel>(user!);
+                var user = await _userRepository.GetUserByNameAsync(IdentityName);
+                if (user == null)
+                {
+                    await Clients.Caller.SendAsync("onError", "User not found!");
+                    return;
+                }
+
+                var userViewModel = _mapper.Map<User, UserViewModel>(user);
                 userViewModel.Device = GetDevice();
                 userViewModel.CurrentRoom = "";
 
-                if (!_Connections.Any(u => u.UserName == IdentityName))
+                if (!_connections.Any(u => u.UserName == IdentityName))
                 {
-                    _Connections.Add(userViewModel);
-                    _ConnectionsMap.Add(IdentityName, Context.ConnectionId);
+                    _connections.Add(userViewModel);
+                    _connectionsMap.Add(IdentityName, Context.ConnectionId);
                 }
 
-                Clients.Caller.SendAsync("getProfileInfo", userViewModel);
+                await Clients.Caller.SendAsync("getProfileInfo", userViewModel);
             }
             catch (Exception ex)
             {
-                Clients.Caller.SendAsync("onError", "OnConnected:" + ex.Message);
+                await Clients.Caller.SendAsync("onError", "OnConnected:" + ex.Message);
             }
-            return base.OnConnectedAsync();
+
+            await base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             try
             {
-                var user = _Connections.Where(u => u.UserName == IdentityName).First();
-                _Connections.Remove(user);
+                var user = _connections.Where(u => u.UserName == IdentityName).First();
+                _connections.Remove(user);
 
                 // Tell other users to remove you from their list
                 await Clients.OthersInGroup(user.CurrentRoom!).SendAsync("removeUser", user);
 
                 // Remove mapping
-                _ConnectionsMap.Remove(user.UserName!);
+                _connectionsMap.Remove(user.UserName!);
             }
             catch (Exception ex)
             {

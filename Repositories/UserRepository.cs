@@ -8,6 +8,7 @@ namespace CMS.Repositories
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<Pagination<User>> GetUsersPagedAsync(int pageNumber, int pageSize, string name);
         Task<User?> GetUserByIdAsync(string id);
+        Task<User?> GetUserByNameAsync(string id);
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(string id);
@@ -84,6 +85,12 @@ namespace CMS.Repositories
         public async Task<bool> UserExistsAsync(string id)
         {
             return await _unitOfWork._userRepository.ExistsAsync(id);
+        }
+
+        public Task<User?> GetUserByNameAsync(string id)
+        {
+            return _unitOfWork._userRepository
+                .FindAsync(c => c.Email == id);
         }
     }
 }

@@ -14,6 +14,7 @@ using CMS.Authorization;
 using Microsoft.AspNetCore.Identity;
 using CMS.Helpers;
 using CMS.Middlewares;
+using CMS.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -91,6 +92,7 @@ services.AddAuthentication()
     }
 });
 
+services.AddSignalR();
 AddScoped();
 
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -141,6 +143,7 @@ CustomMiddleware();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHub<ChatHub>("/chatHub");
 app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())

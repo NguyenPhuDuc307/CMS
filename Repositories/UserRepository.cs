@@ -54,7 +54,6 @@ namespace CMS.Repositories
             };
         }
 
-
         public async Task<User?> GetUserByIdAsync(string id)
         {
             return await _unitOfWork._userRepository.GetByIdAsync(id);

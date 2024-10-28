@@ -14,14 +14,14 @@ namespace CMS.Controllers
 
         public static Dictionary<string, string> vnp_TransactionStatus = new Dictionary<string, string>()
         {
-            {"00","Giao dịch thành công" },
-            {"01","Giao dịch chưa hoàn tất" },
-            {"02","Giao dịch bị lỗi" },
-            {"04","Giao dịch đảo (Khách hàng đã bị trừ tiền tại Ngân hàng nhưng GD chưa thành công ở VNPAY)" },
-            {"05","VNPAY đang xử lý giao dịch này (GD hoàn tiền)" },
-            {"06","VNPAY đã gửi yêu cầu hoàn tiền sang Ngân hàng (GD hoàn tiền)" },
-            {"07","Giao dịch bị nghi ngờ gian lận" },
-            {"09","GD Hoàn trả bị từ chối" }
+            {"00","Transaction successful" },
+            {"01","Transaction not completed" },
+            {"02","Transaction failed" },
+            {"04","Transaction is being rolled back" },
+            {"05","VNPAY is processing the transaction" },
+            {"06","VNPAY has sent a refund request to the bank" },
+            {"07","Transaction is suspected of fraud" },
+            {"09","Refund failed" }
         };
 
         public IActionResult Index()

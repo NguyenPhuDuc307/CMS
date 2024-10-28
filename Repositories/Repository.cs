@@ -224,12 +224,10 @@ namespace CMS.Repositories
     /// </summary>
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _dbContext;
         protected readonly DbSet<T> _entities;
 
         public Repository(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
             _entities = dbContext.Set<T>();
         }
 

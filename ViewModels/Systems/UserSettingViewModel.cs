@@ -5,12 +5,12 @@ namespace CMS.ViewModels.Systems
     {
         public UserSettingViewModel()
         {
-            Theme = CMS.Utils.Constants.Theme.light.ToString();
-            Direction = CMS.Utils.Constants.Direction.ltr.ToString();
-            ColorTheme = CMS.Utils.Constants.ColorTheme.Purple_Theme.ToString();
-            Layout = CMS.Utils.Constants.Layout.vertical.ToString();
+            Theme = Utils.Constants.Theme.light.ToString();
+            Direction = Utils.Constants.Direction.ltr.ToString();
+            ColorTheme = Utils.Constants.ColorTheme.Purple_Theme.ToString();
+            Layout = Utils.Constants.Layout.vertical.ToString();
             BoxedLayout = true;
-            SidebarType = CMS.Utils.Constants.SidebarType.full.ToString();
+            SidebarType = Utils.Constants.SidebarType.full.ToString();
             CardBorder = false;
         }
 

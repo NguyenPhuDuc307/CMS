@@ -20,8 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-// Add services to the container.
-
 int optionDatabases = 1;
 
 switch (optionDatabases)

@@ -30,11 +30,11 @@
         var userSettings = userSettingsCookie ? JSON.parse(decodeURIComponent(userSettingsCookie)) : {
             Layout: "@defaultUserSettings.Layout",
             SidebarType: "@defaultUserSettings.SidebarType",
-            BoxedLayout: @defaultUserSettings.BoxedLayout.ToString(),
+            BoxedLayout: "@defaultUserSettings.BoxedLayout.ToString().ToLowerInvariant()",
             Direction: "@defaultUserSettings.Direction",
             Theme: "@defaultUserSettings.Theme",
             ColorTheme: "@defaultUserSettings.ColorTheme",
-            CardBorder: @defaultUserSettings.CardBorder.ToString(),
+            CardBorder: "@defaultUserSettings.CardBorder.ToString().ToLowerInvariant()",
         };
     </script>
 

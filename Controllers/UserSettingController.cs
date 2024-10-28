@@ -8,12 +8,10 @@ namespace CMS.Controllers;
 
 public class UserSettingController : Controller
 {
-    private readonly IUserRepository _userRepository;
     private readonly IUserSettingRepository _userSettingRepository;
 
-    public UserSettingController(IUserRepository userRepository, IUserSettingRepository userSettingRepository)
+    public UserSettingController(IUserSettingRepository userSettingRepository)
     {
-        _userRepository = userRepository;
         _userSettingRepository = userSettingRepository;
     }
 
@@ -21,13 +19,25 @@ public class UserSettingController : Controller
     [Authorize]
     public async Task<IActionResult> UpdateUserSetting([FromBody] UserSetting model)
     {
-        var userSetting = await _userSettingRepository.GetUserSettingByUserIdAsync(User.GetUserId());
+        var userId = User.GetUserId();
+        var userSetting = await _userSettingRepository.GetUserSettingByUserIdAsync(userId);
 
-        if (userSetting != null)
+        if (userSetting == null)
         {
-            userSetting.Theme = model.Theme;
+            userSetting = new UserSetting();
+
+            await _userSettingRepository.CreateUserSettingAsync(userSetting);
+        }
+        else
+        {
             userSetting.Layout = model.Layout;
             userSetting.SidebarType = model.SidebarType;
+            userSetting.BoxedLayout = model.BoxedLayout;
+            userSetting.Direction = model.Direction;
+            userSetting.Theme = model.Theme;
+            userSetting.ColorTheme = model.ColorTheme;
+            userSetting.CardBorder = model.CardBorder;
+
             await _userSettingRepository.UpdateUserSettingAsync(userSetting);
         }
 

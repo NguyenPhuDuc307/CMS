@@ -11,5 +11,12 @@ namespace CMS.Extensions
                 .SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
             return claim!.Value;
         }
+
+        public static string? GetAccessToken(this ClaimsPrincipal claimsPrincipal)
+        {
+            var accessToken = claimsPrincipal.FindFirstValue("access_token");
+            return accessToken;
+        }
+
     }
 }

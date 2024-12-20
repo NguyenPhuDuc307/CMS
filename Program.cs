@@ -87,6 +87,21 @@ services.AddAuthentication()
     {
         facebookOptions.AppId = facebookAppId;
         facebookOptions.AppSecret = facebookAppSecret;
+        facebookOptions.Scope.Add("public_profile");
+        facebookOptions.Scope.Add("email");
+        facebookOptions.Scope.Add("user_likes");
+        facebookOptions.SaveTokens = true;
+
+        facebookOptions.Events.OnTicketReceived = async context =>
+        {
+            var accessToken = context.Properties!.GetTokenValue("access_token");
+            if (accessToken != null)
+            {
+                context.Properties!.StoreTokens(new[] { new AuthenticationToken { Name = "access_token", Value = accessToken } });
+            }
+
+            await Task.CompletedTask;
+        };
     }
 });
 
@@ -198,6 +213,7 @@ void AddScoped()
     services.AddTransient<ICacheService, DistributedCacheService>();
     services.AddTransient<ICloudStorageService, CloudStorageService>();
     services.AddTransient<IFileValidator, FileValidator>();
+    services.AddHttpClient<FacebookService>();
 }
 
 void RouteRazerPage()

@@ -1,0 +1,23 @@
+@model List<FacebookLike>
+
+<h2>Danh sách bài viết đã thích</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Ngày thích</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var like in Model)
+        {
+            <tr>
+                <td>@like.Id</td>
+                <td>@like.Name</td>
+                <td>@like.CreatedTime</td>
+            </tr>
+        }
+    </tbody>
+</table>

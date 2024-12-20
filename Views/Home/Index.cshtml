@@ -2,6 +2,22 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @{
+        for (int i = 97; i <= 106; i++)
+        {
+            string imgPath = $"img/{(char)i}.jpg";
+            <div class="col">
+                <div class="card rounded-3">
+                    <img src="@imgPath" alt="..." class="rounded-top">
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
 <!--  Row -->
 <div class="row">
     <div class="col-12">
